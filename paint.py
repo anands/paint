@@ -24,6 +24,12 @@ SOFTWARE.
 
 import core, os
 
+# raw_input and input fix:
+try:
+	input = raw_input
+except NameError:
+	pass
+
 # Try to fetch email and username from git config
 author_name = (os.popen('git config --global user.name').read()).rstrip()
 author_email = (os.popen('git config --global user.email').read()).rstrip()
@@ -32,13 +38,13 @@ author_email = (os.popen('git config --global user.email').read()).rstrip()
 if not (author_email and author_name):
 	print ("Enter your details, to avoid this set your email to git config.")
 	if not author_email:
-		author_email = str(raw_input("Email: "))
+		author_email = str(input("Email: "))
 	if not author_name:
-		author_name = str(raw_input("Username: "))
+		author_name = str(input("Username: "))
 
 # Read the message
 print ("Enter the message you want to display in your Github profile: (This will be trimmed to 8 chars)")
-message = str(raw_input())
+message = str(input())
 
 # Trigger the build
 git_dir =  core.init(message, author_name, author_email)
