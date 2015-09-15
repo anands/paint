@@ -30,18 +30,18 @@ author_email = (os.popen('git config --global user.email').read()).rstrip()
 
 # Fallback for email and username if not found in git config
 if not (author_email and author_name):
-	print "Enter your details, to avoid this set your email to git config."
+	print ("Enter your details, to avoid this set your email to git config.")
 	if not author_email:
 		author_email = str(raw_input("Email: "))
 	if not author_name:
 		author_name = str(raw_input("Username: "))
 
 # Read the message
-print "Enter the message you want to display in your Github profile: (This will be trimmed to 8 chars)"
+print ("Enter the message you want to display in your Github profile: (This will be trimmed to 8 chars)")
 message = str(raw_input())
 
 # Trigger the build
 git_dir =  core.init(message, author_name, author_email)
 
 # Print the response
-print "\nGit commit history generated, now:\ncd " + git_dir + "\ngit remote add origin https://github.com/example/yourrepo.git\ngit push origin master"
+print ("\nGit commit history generated, now:\ncd " + git_dir + "\ngit remote add origin https://github.com/example/yourrepo.git\ngit push origin master")
